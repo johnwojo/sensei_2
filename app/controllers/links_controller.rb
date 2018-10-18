@@ -26,4 +26,35 @@ class LinksController < ApplicationController
      end
   end
 
+  def update
+    @link = Link.find(params[:id])
+    @link.update(name: params[:name])
+    @link.update(source: params[:source])
+    @link.update(description: params[:description])
+    redirect_to link_path(@link)
+  end
+
+  def destroy
+    @link = current_user.links.find(params[:id])
+    @link.destroy
+    redirect_to root_path, notice: 'This link has been deleted.'
+  end
+
+  def status_change
+    @link = current_user.links.find(params[:id])
+    if @link.status == true
+      @link.status = false
+    elsif @link.status == false
+      @link.status = true
+    end
+    @link.save
+    redirect_to link_path(@link), notice: 'This link has been updated.'
+  end
+
+  private
+
+  def link_params
+    params.require(:link).permit(:name, :source, :description, :status)
+  end
+
 end
