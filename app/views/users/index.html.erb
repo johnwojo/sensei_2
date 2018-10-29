@@ -1,0 +1,22 @@
+<div class="w3-display-left">
+  <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;daily reading //</b></h1>
+  <hr class="w3-border-grey" style="margin:auto;width:40%">
+</div>
+
+  <%if !current_user.teachings.empty?%>
+    <div class="w3-display-middle">
+      <!-- <%@daily = current_user.teachings.sample%> -->
+      <%=@daily.teacher.name%> // <%=@daily.name%>
+      <p><%=@daily.content%></p>
+    </div>
+
+    <div class="w3-display-bottomleft">
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to('Most Common Sensei',{:controller => 'teachers', :action => 'most_common'})%>
+    </div>
+
+  <% else %>
+    <div class="w3-display-middle">
+      <h3>You better go discover some <%= link_to('teachers.',{:controller => 'teachers',:action => 'new'})%>
+.</h3>
+    </div>
+  <%end%>
