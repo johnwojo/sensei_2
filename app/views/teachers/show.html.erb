@@ -1,0 +1,12 @@
+<div class="w3-display-left">
+  <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;teacher //</b></h1>
+  <hr class="w3-border-grey" style="margin:auto;width:40%">
+</div>
+
+<div class="w3-display-middle">
+  <p><b>Teacher: </b><%=@teacher.name.capitalize %></p>
+  <p>//<%= link_to "Display this teacher's teachings.", teacher_teachings_path(@teacher) %></p>
+  <p>//<%= link_to('Create a new teacher.',{:controller => 'teachers',:action => 'new'})%><p>
+  <p>//<%= link_to('Create a new teaching.',{:controller => 'teachings',:action => 'new'})%><p>
+  <p>//<%= link_to('Edit this teacher.',{:controller => 'teachers',:action => 'edit'})%><p>
+  <p>//<%= link_to('Delete this teacher.', teacher_path(@teacher), method: :delete, data: { confirm: 'Are you sure?' }) %></p>

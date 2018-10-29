@@ -1,0 +1,11 @@
+<div class="w3-display-left">
+  <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;edit teacher //</b></h1>
+  <hr class="w3-border-grey" style="margin:auto;width:40%">
+</div>
+
+<div class="w3-display-middle">
+<%= form_tag teacher_path(@teacher), method: "put" do %>
+  <label>Teacher Name:</label><br>
+  <%= text_field_tag :name, @teacher.name %><br>
+  <%= submit_tag "Edit Teacher" %>
+<% end %>
