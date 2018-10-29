@@ -1,0 +1,22 @@
+<div class="w3-display-left">
+  <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;edit teaching //</b></h1>
+  <hr class="w3-border-grey" style="margin:auto;width:40%">
+</div>
+
+<div class="w3-display-middle">
+<%= form_tag teaching_path(@teaching), method: "put" do %>
+
+  <label>Teaching Name:</label><br>
+  <%= text_field_tag :name, @teaching.name %><br>
+
+  <label>Content:</label><br>
+  <%= text_area_tag :content, @teaching.content %><br>
+
+  <label>Media Type:</label><br>
+  <%= text_field_tag :media_type, @teaching.media_type %><br>
+
+  <label>Source:</label><br>
+  <%= text_field_tag :source, @teaching.source %><br>
+
+  <%= submit_tag "Edit Teaching" %>
+<% end %>

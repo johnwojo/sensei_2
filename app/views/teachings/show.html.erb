@@ -1,0 +1,15 @@
+<div class="w3-display-left">
+  <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;teaching //</b></h1>
+  <hr class="w3-border-grey" style="margin:auto;width:40%">
+</div>
+
+  <div class="w3-display-middle">
+    <p><b>Teaching:</b> <%=@teaching.name %></p>
+    <p><b>Content:</b> <%=@teaching.content%></p>
+    <p><b>Media Type:</b> <%=@teaching.media_type%></p>
+    <p><b>Source:</b> <%=@teaching.source%></p>
+    <p><b>Teacher:</b> <%=@teaching.teacher.name.capitalize%></p>
+    <p>// <a href="/teachings/new"><%="Create a Teaching."%></a></p>
+    <p>//<%= link_to('Edit this teaching.',{:controller => 'teachings',:action => 'edit'})%><p>
+    <p>//<%= link_to('Delete this teaching.', teaching_path(@teaching), method: :delete, data: { confirm: 'Are you sure?' }) %></p>
+  </div>

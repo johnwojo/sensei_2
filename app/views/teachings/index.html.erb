@@ -1,0 +1,16 @@
+<div class="w3-display-left">
+    <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;teachings //</b></h1>
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
+  </div>
+
+  <div class="w3-display-middle">
+
+  <% @teachings.each do |teaching| %>
+    <p><a href="/teachings/<%=teaching.id%>"><%=teaching.name.capitalize%></a></p>
+  <%end%>
+
+  <% if !current_user.teachers.empty?%>
+    <p><%= link_to('Create a new teaching.',{:controller => 'teachings',:action => 'new'})%></p>
+  <% else %>
+    <h3>You better go discover some <%= link_to('teachers',{:controller => 'teachers',:action => 'new'})%> first.<h3>
+  <% end %>

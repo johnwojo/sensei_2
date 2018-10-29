@@ -1,0 +1,38 @@
+<div class="w3-display-left">
+  <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;create a teaching//</b></h1>
+  <hr class="w3-border-grey" style="margin:auto;width:40%">
+</div>
+
+
+    </br>
+    </br>
+    </br>
+
+  <div class="w3-display-middle">
+  <%= form_for @teaching do |f| %>
+    <%= f.text_field :name, placeholder: "Title"  %>&nbsp;&nbsp;
+    <p><%= f.text_area :content, size: "70x10", placeholder: "Content" %></p>
+    <%= f.text_field :media_type, placeholder: "Media Type"  %>&nbsp;&nbsp;
+    <%= f.text_field :source, placeholder: "Source"  %></p>
+
+
+      <p><b>Select A Teacher:&nbsp;&nbsp;</b>
+      <%= f.select(:teacher_id) do %>
+        <% current_user.teachers.each do |teacher| -%>
+          <%= content_tag(:option, teacher.name, value: teacher.id) %>
+        <% end %>
+      <% end %>
+
+      &nbsp;&nbsp;&nbsp;&nbsp;Or <a href="/teachers/new"><%="create one"%></a>.</p>
+
+
+    </br>
+
+    <p><%=f.select :favorite, [['Favorite', true], ['Not Favorite', false]]%> &nbsp;&nbsp; &nbsp;&nbsp;
+    <%= f.submit %></p>
+
+  <% end %>
+</div>
+
+</br>
+</br>
