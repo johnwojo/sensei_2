@@ -1,15 +1,76 @@
 <!DOCTYPE html>
+
 <html>
+
+<title>Sensei</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+    body,h1 {font-family: "Raleway", sans-serif}
+    body, html {height: 100%}
+    .bgimg {
+        /*background-image: url('https://images.unsplash.com/photo-1472566316349-bce77aa2a778?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7d008375f2174fbe7fd36f5ad74a576b&auto=format&fit=crop&w=1950&q=80');*/
+        background-image: url('https://images.unsplash.com/photo-1514531091606-ac8e88aa89cd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d39de2a0cbb04435be36d9a04a16d069&auto=format&fit=crop&w=1950&q=80');
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+    }
+  </style>
+
+
   <head>
-    <title>Sensei2</title>
+    <title>Sensei</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <!-- top left -->
+    <div class="bgimg w3-display-container w3-animate-opacity  w3-text-white">
+      <div class="w3-display-topleft w3-padding-large w3-medium">
+    <% if current_user %>
+      <%= link_to('Home',{:controller => 'application',:action => 'index'})%> |
+      <%= link_to('Profile',{:controller => 'users',:action => 'index'})%> |
+      <%= link_to('Teachers',{:controller => 'teachers',:action => 'index'})%> |
+      <%= link_to('Teachings',{:controller => 'teachings',:action => 'index'})%> |
+      <%= link_to('Links',{:controller => 'links',:action => 'index'})%>
+
+    <% else %>
+      <%= "You are not logged in. Make sure to log in." %>
+    <% end %>
+  </div>
+
+  <!-- top right -->
+    <div class="bgimg w3-display-container w3-text-white">
+      <div class="w3-display-topright w3-padding-large w3-medium">
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+
+          <% if current_user %>
+            <!-- Logged in as <strong><%= current_user.email %></strong>.
+            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> | -->
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+            <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> |
+              <% unless current_user %>
+                <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, id: "sign_in" %>
+              <% else %>
+                <%= current_user[:name] %>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              <% end %>
+          <% end %>
+      </div>
+    </div>
+        <%= yield %>
+      </div>
   </body>
 </html>

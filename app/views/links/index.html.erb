@@ -1,0 +1,44 @@
+<div class="w3-display-left">
+  <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;links //</b></h1>
+  <hr class="w3-border-grey" style="margin:auto;width:40%">
+</div>
+
+<div class="w3-display-topmiddle">
+  <%if !current_user.links.empty?%>
+    </br>
+    </br>
+    </br>
+    <h2><i>to read //</i></h2>
+      <% current_user.links.each do |link| %>
+        <% if link.status == true %>
+          <p>- <a href="/links/<%=link.id%>"><%=link.name.capitalize%></a></p>
+        <%end%>
+      <% end %>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+    <h2><i>have read //</i></h2>
+      <% current_user.links.each do |link| %>
+      <% if link.status == false %>
+        <p>- <a href="/links/<%=link.id%>"><%=link.name.capitalize%></a></p>
+      <% end %>
+    <% end %>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+    <%= link_to('Create a new link.',{:controller => 'links',:action => 'new'})%>
+  </div>
+
+
+    <% else %>
+      <div class="w3-display-middle">
+        <p>If you have an interesting link to save, add it <%= link_to('here','/links/new')%>.</p>
+        </br>
+        <p>Otherwise, there are a million interesting things in our world. </p>
+        <p>It's time for you to go discover something <%= link_to('new','https://goo.gl/UgUaJW')%>.</p>
+      </div>
+    <%end%>

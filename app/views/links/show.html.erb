@@ -1,0 +1,37 @@
+<div class="w3-display-left">
+  <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;link //</b></h1>
+  <hr class="w3-border-grey" style="margin:auto;width:40%">
+</div>
+
+  <div class="w3-display-middle">
+    <p><b>Name:</b> <%=@link.name %></p>
+    <p><b>Source:</b> <%=@link.source%></p>
+    <p><b>Description:</b> <%=@link.description%></p>
+    <% if @link.status == true %>
+      <p><b>Status:</b> <%="To Read"%></p></br>
+    <% elsif @link.status == false %>
+      <p><b>Status:</b> <%="Have Read"%></p></br>
+    <% end %>
+
+    <p>// <a href="/teachers/new"><%="Create a Teacher."%></a></p>
+    <% if !current_user.teachers.empty?%>
+      <p>// <a href="/teachings/new"><%="Create a Teaching."%></a></p>
+    <% end %>
+    <p>//<%= link_to('Edit this link.',{:controller => 'links',:action => 'edit'})%><p>
+    <p>//<%= link_to('Delete this link.', link_path(@link), method: :delete, data: { confirm: 'Are you sure?' }) %></p>
+
+
+    <% if @link.status == true %>
+      <form action="/links/<%=@link.id%>/status_change">
+        <input type="submit" value="I read this."/>
+      </form>
+    <% end %>
+
+    <% if @link.status == false %>
+      <form action="/links/<%=@link.id%>/status_change">
+        <input type="submit" value="I have not read this."/>
+      </form>
+    <% end %>
+
+
+  </div>

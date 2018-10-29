@@ -1,0 +1,19 @@
+<div class="w3-display-left">
+  <h1 class="w3-xl"><b>&nbsp;&nbsp;&nbsp;&nbsp;edit link //</b></h1>
+  <hr class="w3-border-grey" style="margin:auto;width:40%">
+</div>
+
+<div class="w3-display-middle">
+<%= form_tag link_path(@link), method: "put" do %>
+
+  <label>Link Name:</label><br>
+  <%= text_field_tag :name, @link.name, placeholder: "Name" %><br>
+
+  <label>Link Source:</label><br>
+  <%= text_field_tag :source, @link.source, size: "70x10", placeholder: "Source"  %><br>
+
+  <label>Link Description:</label><br>
+  <%= text_area_tag :description, @link.description, size: "70x10", placeholder: "Description" %><br>
+
+  <%= submit_tag "Edit Link" %>
+<% end %>
